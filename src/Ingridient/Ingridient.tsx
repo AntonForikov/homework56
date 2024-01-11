@@ -1,8 +1,4 @@
 import React from 'react';
-// import meatImg from '../assets/meat.png';
-// import cheeseImg from '../assets/cheese.png';
-// import baconImg from '../assets/bacon.png';
-// import salatImg from '../assets/salat.png';
 
 interface  Props {
     name: string,
@@ -12,13 +8,7 @@ interface  Props {
     minus: React.MouseEventHandler
 }
 
-// interface ingredient {
-//     name: string,
-//     price: number,
-//     image: string
-// }
-
-const Ingridient: React.FC<Props> = ({name, img, quantity, plus, minus}) => {
+const Ingredient: React.FC<Props> = ({name, img, quantity, plus, minus}) => {
    const divStyle: React.CSSProperties = {
        display: "flex",
        justifyContent: 'space-between',
@@ -37,30 +27,6 @@ const Ingridient: React.FC<Props> = ({name, img, quantity, plus, minus}) => {
        cursor: "pointer"
    };
 
-    // const ingredients: ingredient[] = [
-    //     {name: 'Meat', price: 80, image: meatImg},
-    //     {name: 'Cheese', price: 50, image: cheeseImg},
-    //     {name: 'Salat', price: 10, image: salatImg},
-    //     {name: 'Bacon', price: 60, image: baconImg},
-    // ];
-
-   // const ingredientBlock = (
-   //     <>
-   //         {
-   //             ingredients.map((ingredient, index) => {
-   //                 return (
-   //                     <div style={divStyle} key={index}>
-   //                         <img src={ingredient.image} alt={ingredient.name} style={imgStyle} onClick={counterPlus}/>
-   //                         <span>{ingredient.name}</span>
-   //                         <span>x{counter}</span>
-   //                         <button style={buttonStyle}>Delete</button>
-   //                     </div>
-   //                 )
-   //             })
-   //         }
-   //     </>
-   // )
-
     return (
         <div style={divStyle}>
             <img src={img} alt={name} style={imgStyle} onClick={plus} />
@@ -71,4 +37,4 @@ const Ingridient: React.FC<Props> = ({name, img, quantity, plus, minus}) => {
     )
 };
 
-export default Ingridient;
+export default Ingredient;

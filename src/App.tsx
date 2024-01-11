@@ -6,7 +6,7 @@ import Meat from "./Meat/Meat.tsx";
 import Bacon from "./Bacon/Bacon.tsx";
 import Salad from "./Salat/Salad.tsx";
 import Cheese from "./Cheese/Cheese.tsx";
-import Ingridient from "./Ingridient/Ingridient.tsx";
+import Ingredient from "./Ingridient/Ingridient.tsx";
 import meatImg from "./assets/meat.png";
 import cheeseImg from "./assets/cheese.png";
 import salatImg from "./assets/salat.png";
@@ -38,33 +38,26 @@ function App() {
         {name: 'Bacon', count: 0},
     ]);
 
-    // const ingredients: ingredient[] = [
-    //     {name: 'Meat', price: 80, image: meatImg},
-    //     {name: 'Cheese', price: 50, image: cheeseImg},
-    //     {name: 'Salad', price: 10, image: salatImg},
-    //     {name: 'Bacon', price: 60, image: baconImg},
-    // ];
-
     const plusCount = (index: number) => {
         const ingredientCountCopy = [...ingredientCount];
         ingredientCountCopy[index].count++;
         setIngredientCount([...ingredientCountCopy])
-    }
+    };
 
     const minusCount = (index: number) => {
         if (ingredientCount[index].count !== 0) {
             const ingredientCountCopy = [...ingredientCount];
             ingredientCountCopy[index].count--;
-            setIngredientCount([...ingredientCountCopy])
+            setIngredientCount([...ingredientCountCopy]);
         }
-    }
+    };
 
     const ingredientBlock = (
         <>
             {
                 ingredients.map((ingredient, index) => {
                     return (
-                        <Ingridient
+                        <Ingredient
                             key={index}
                             name={ingredient.name}
                             img={ingredient.image}
@@ -76,7 +69,14 @@ function App() {
                 })
             }
         </>
-    )
+    );
+
+    const totalPrice = () => {
+        const price = ingredientCount.reduce((acc, ing, index) => {
+            return acc + (ing.count * ingredients[index].price)
+        }, 30);
+        return price
+    }
 
     return (
         <>
@@ -92,7 +92,7 @@ function App() {
                         <Cheese></Cheese>
                     </Bread>
 
-                    <Price price={10}></Price>
+                    <Price price={totalPrice()}></Price>
                 </div>
             </div>
         </>
