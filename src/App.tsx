@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import './App.css';
 import Bread from "./Bread/Bread.tsx";
 import Price from "./Price/Price.tsx";
@@ -7,23 +7,82 @@ import Bacon from "./Bacon/Bacon.tsx";
 import Salad from "./Salat/Salad.tsx";
 import Cheese from "./Cheese/Cheese.tsx";
 import Ingridient from "./Ingridient/Ingridient.tsx";
-import meatImg from './assets/meat.png';
-import cheeseImg from './assets/cheese.png';
-import baconImg from './assets/bacon.png';
-import salatImg from './assets/salat.png';
+import meatImg from "./assets/meat.png";
+import cheeseImg from "./assets/cheese.png";
+import salatImg from "./assets/salat.png";
+import baconImg from "./assets/bacon.png";
+
+interface ingredient {
+    name: string,
+    price: number,
+    image: string
+}
+
+interface ingredientState {
+    name: string,
+    count: number
+}
+
+const ingredients: ingredient[] = [
+    {name: 'Meat', price: 80, image: meatImg},
+    {name: 'Cheese', price: 50, image: cheeseImg},
+    {name: 'Salad', price: 10, image: salatImg},
+    {name: 'Bacon', price: 60, image: baconImg},
+];
 
 function App() {
-    // const [count, setCount] = useState(0);
+    const [ingredientCount, setIngredientCount] = useState<ingredientState[]>([
+        {name: 'Meat', count: 0},
+        {name: 'Cheese', count: 0},
+        {name: 'Salad', count: 0},
+        {name: 'Bacon', count: 0},
+    ]);
 
+    // const ingredients: ingredient[] = [
+    //     {name: 'Meat', price: 80, image: meatImg},
+    //     {name: 'Cheese', price: 50, image: cheeseImg},
+    //     {name: 'Salad', price: 10, image: salatImg},
+    //     {name: 'Bacon', price: 60, image: baconImg},
+    // ];
+
+    const plusCount = (index: number) => {
+        const ingredientCountCopy = [...ingredientCount];
+        ingredientCountCopy[index].count++;
+        setIngredientCount([...ingredientCountCopy])
+    }
+
+    const minusCount = (index: number) => {
+        if (ingredientCount[index].count !== 0) {
+            const ingredientCountCopy = [...ingredientCount];
+            ingredientCountCopy[index].count--;
+            setIngredientCount([...ingredientCountCopy])
+        }
+    }
+
+    const ingredientBlock = (
+        <>
+            {
+                ingredients.map((ingredient, index) => {
+                    return (
+                        <Ingridient
+                            key={index}
+                            name={ingredient.name}
+                            img={ingredient.image}
+                            quantity={ingredientCount[index].count}
+                            plus={() => plusCount(index)}
+                            minus={() => minusCount(index)}
+                        />
+                    )
+                })
+            }
+        </>
+    )
 
     return (
         <>
             <div className='main'>
                 <div className='ingridients'>
-                    <Ingridient name='Meat' image={meatImg} quantity={1} />
-                    <Ingridient name='Cheese' image={cheeseImg} quantity={1} />
-                    <Ingridient name='Salat' image={salatImg} quantity={1} />
-                    <Ingridient name='Bacon' image={baconImg} quantity={1} />
+                    {ingredientBlock}
                 </div>
                 <div className='ingridient'>
                     <Bread>
