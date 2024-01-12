@@ -17,7 +17,7 @@ const Bacon:React.FC<Props> = ({count}) => {
                 ingredientsDiv.map(() => {
                     return <div className="Bacon" key={Math.random()}></div>;
                 })
-            };
+            }
         </>
     );
     return <>{divs}</>;

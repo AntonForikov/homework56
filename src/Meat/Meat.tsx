@@ -17,10 +17,10 @@ const Meat: React.FC<Props> = ({count}) => {
                 ingredientsDiv.map(() => {
                     return <div className="Meat" key={Math.random()}></div>;
                 })
-            };
+            }
         </>
     );
-    return <>{divs}</>;
+    return <>{divs}</>
 };
 
 export default Meat;

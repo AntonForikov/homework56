@@ -17,7 +17,7 @@ const Cheese: React.FC<Props> = ({count}) => {
                 ingredientsDiv.map(() => {
                     return <div className="Cheese" key={Math.random()}></div>;
                 })
-            };
+            }
         </>
     );
     return <>{divs}</>;
