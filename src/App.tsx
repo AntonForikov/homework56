@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import './App.css';
 import Bread from "./Bread/Bread.tsx";
 import Price from "./Price/Price.tsx";
@@ -41,7 +41,7 @@ function App() {
     const plusCount = (index: number) => {
         const ingredientCountCopy = [...ingredientCount];
         ingredientCountCopy[index].count++;
-        setIngredientCount([...ingredientCountCopy])
+        setIngredientCount([...ingredientCountCopy]);
     };
 
     const minusCount = (index: number) => {
@@ -65,18 +65,18 @@ function App() {
                             plus={() => plusCount(index)}
                             minus={() => minusCount(index)}
                         />
-                    )
+                    );
                 })
-            }
+            };
         </>
     );
 
     const totalPrice = () => {
         const price = ingredientCount.reduce((acc, ing, index) => {
-            return acc + (ing.count * ingredients[index].price)
+            return acc + (ing.count * ingredients[index].price);
         }, 30);
-        return price
-    }
+        return price;
+    };
 
     return (
         <>
@@ -86,17 +86,17 @@ function App() {
                 </div>
                 <div className='ingridient'>
                     <Bread>
-                        <Meat></Meat>
-                        <Bacon></Bacon>
-                        <Salad></Salad>
-                        <Cheese></Cheese>
+                        <Bacon count={ingredientCount[3].count} />
+                        <Salad count={ingredientCount[2].count} />
+                        <Cheese count={ingredientCount[1].count} />
+                        <Meat count={ingredientCount[0].count} />
                     </Bread>
 
                     <Price price={totalPrice()}></Price>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default App

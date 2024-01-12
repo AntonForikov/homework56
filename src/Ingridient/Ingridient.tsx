@@ -24,17 +24,21 @@ const Ingredient: React.FC<Props> = ({name, img, quantity, plus, minus}) => {
        backgroundColor: 'red',
        padding: '10px',
        borderRadius: '8px',
-       cursor: "pointer"
+       cursor: "pointer",
    };
+
+   if (quantity < 1) {
+       buttonStyle.backgroundColor = "Grey";
+   }
 
     return (
         <div style={divStyle}>
             <img src={img} alt={name} style={imgStyle} onClick={plus} />
             <span>{name}</span>
             <span>x{quantity}</span>
-            <button style={buttonStyle} onClick={minus}>Delete</button>
+            <button style={buttonStyle} onClick={minus} disabled={!quantity}>Delete</button>
         </div>
-    )
+    );
 };
 
 export default Ingredient;
